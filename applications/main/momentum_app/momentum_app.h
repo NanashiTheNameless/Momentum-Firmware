@@ -1,6 +1,7 @@
 #pragma once
 
 #include <gui/gui.h>
+#include <storage/storage.h>
 #include <desktop/desktop.h>
 #include <dialogs/dialogs.h>
 #include <expansion/expansion.h>
@@ -26,6 +27,7 @@
 #include <dolphin/dolphin_i.h>
 #include <dolphin/helpers/dolphin_state.h>
 #include <momentum/settings.h>
+#include <desktop/views/desktop_view_slideshow.h>
 
 #include <applications.h>
 #include <assets_icons.h>
@@ -43,6 +45,7 @@ ARRAY_DEF(CharList, char*)
 
 typedef struct {
     Gui* gui;
+    Storage* storage;
     Desktop* desktop;
     DialogsApp* dialogs;
     Expansion* expansion;
@@ -104,3 +107,6 @@ typedef enum {
 } MomentumAppView;
 
 bool momentum_app_apply(MomentumApp* app);
+
+void momentum_app_load_mainmenu_apps(MomentumApp* app);
+void momentum_app_empty_mainmenu_apps(MomentumApp* app);
