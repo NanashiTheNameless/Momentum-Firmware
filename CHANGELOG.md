@@ -8,8 +8,9 @@
   - Tools: Key Copier (by @zinongli)
   - Sub-GHz: Music to Sub-GHz Radio (by @jamisonderek)
 - Sub-GHz:
-  - Added Solight TE44 weather station recognition (by @m7i-org)
+  - Added Solight TE44 weather station recognition (#183 by @m7i-org)
   - OFW: Add Dickert MAHS garage door protocol (by @OevreFlataeker)
+- MNTM Settings: Allow setting Dolphin XP manually (by @Willy-JL)
 - Settings: Show free flash amount in internal storage info (by @Willy-JL)
 - Services:
   - OFW: On SD insert load BT, Desktop, Dolphin, Expansion, Notification, Region files (by @gsurkov)
@@ -27,7 +28,7 @@
 - Apps:
   - BLE Spam: Can use 20ms advertising again with LFS gone (by @Willy-JL)
   - Seader: Remove some optional ASN1 fields, disable ASN1 debug (by @bettse)
-  - NFC Playlist: Fix extension check and error messages, bugfixes and improvements (by @acegoal07)
+  - NFC Playlist: Move playlist items, many bugfixes and improvements (by @acegoal07)
   - ESP Flasher: Update Marauder bins to v1.0.0 (by @justcallmekoko)
   - Sub-GHz Bruteforcer: Fix one/two byte text (by @Willy-JL)
   - Pokemon Trading: Reset trade without affecting current pokemon, major refactoring (by @kbembedded)
@@ -36,6 +37,8 @@
   - Flizzer Tracker: Fix app not responding to keypresses (by @LTVA1)
   - UHF RFID: Bugfixes, some refactoring, write modes (by @frux-c)
   - Authenticator: Fix BT keys filenames format (by @akopachov)
+  - Mifare Fuzzer: Fix crash on unsupported card type loaded (by @Willy-JL)
+  - Cross Remote: Use system provided NumberInput (by @leedave)
   - UL: UART Terminal: Configurable CRLF or newline mode (by @xMasterX)
   - UL: SubGHz Bruteforcer: App refactoring and code documentation (by @derskythe)
   - Various app fixes for `-Wundef` option (by @Willy-JL)
@@ -51,7 +54,10 @@
   - Big cleanup of all services and settings handling, refactor lots old code (by @Willy-JL)
   - Update all settings paths to use equivalents like OFW or UL for better compatibility (by @Willy-JL)
 - Updater: Change to `resources.tar.gz` filename to avoid confusion with update `.tgz` (by @Willy-JL)
-- OFW: NFC: Refactor detected protocols list (by @Astrrra)
+- Storage: Improved handling of VirtualMount status and added logging (by @Willy-JL)
+- NFC:
+  - Updated MFC dict, +5 from RRG proxmark3, +3 from Mifare Classic Tool, +26 from Stepzor11 repo
+  - OFW: Refactor detected protocols list (by @Astrrra)
 - Furi:
   - OFW: FuriEventLoop Pt.2 with `Mutex` `Semaphore` `StreamBuffer`, refactor Power service (by @gsurkov)
   - OFW: Update string documentation (by @skotopes)
@@ -64,10 +70,12 @@
   - OFW: Make file extensions case-insensitive (by @gsurkov)
 - File Browser: Fix race condition for switch folder and refresh (by @Willy-JL)
 - MNTM Settings: Fix UI desync after reset mainmenu (by @Willy-JL)
+- Sub-GHz:
+  - Make sure previous frequency is in list, fix UI desync (by @Willy-JL)
+  - OFW: Fix RPC status for ButtonRelease event (by @Skorpionm)
 - NFC:
   - OFW: Fix plantain balance string (by @Astrrra)
   - OFW: Now fifo size in ST25 chip is calculated properly (by @RebornedBrain)
-- OFW: Sub-GHz: Fix RPC status for ButtonRelease event (by @Skorpionm)
 - OFW: Infrared: Fix cumulative error in infrared signals (by @gsurkov)
 - OFW: Desktop: Separate callbacks for dolphin and storage subscriptions (by @skotopes)
 - OFW: FBT: Improved size validator for updater image (by @hedger)
@@ -76,3 +84,4 @@
 ### Removed:
 - OFW: Storage: Remove LFS / LittleFS Internal Storage, all config on SD Card (by @skotopes & @gsurkov)
 - Storage: Remove `CFG_PATH()` and `.config/` folder, `INT_PATH()` is now on SD card at `.int/` due to LFS removal and should be used instead (by @Willy-JL)
+- NFC: Removed abandoned unverified `bmp_sorted` and `icbmp_sorted` proxmark3 key dict sections

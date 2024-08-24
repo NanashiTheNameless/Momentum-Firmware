@@ -109,7 +109,12 @@ static FuriString*
 void desktop_keybinds_load(Desktop* desktop, DesktopKeybinds* keybinds) {
     for(DesktopKeybindType type = 0; type < DesktopKeybindTypeMAX; type++) {
         for(DesktopKeybindKey key = 0; key < DesktopKeybindKeyMAX; key++) {
-            (*keybinds)[type][key] = furi_string_alloc_set(desktop_keybinds_defaults[type][key]);
+            const char* default_keybind = desktop_keybinds_defaults[type][key];
+            if((*keybinds)[type][key]) {
+                furi_string_set((*keybinds)[type][key], default_keybind);
+            } else {
+                (*keybinds)[type][key] = furi_string_alloc_set(default_keybind);
+            }
         }
     }
 
@@ -192,7 +197,8 @@ void desktop_run_keybind(Desktop* desktop, InputType _type, InputKey _key) {
     DesktopKeybindKey key = keybind_keys[_key];
     FuriString* keybind = desktop_keybinds_load_one(desktop, type, key);
 
-    if(furi_string_equal(keybind, "Apps Menu")) {
+    if(furi_string_empty(keybind)) {
+    } else if(furi_string_equal(keybind, "Apps Menu")) {
         loader_start_detached_with_gui_error(desktop->loader, LOADER_APPLICATIONS_NAME, NULL);
     } else if(furi_string_equal(keybind, "Archive")) {
         view_dispatcher_send_custom_event(desktop->view_dispatcher, DesktopMainEventOpenArchive);
